@@ -1,0 +1,26 @@
+<div class="orders">
+  <h2>Заказы</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th>Дата</th>
+        <th>Сумма</th>
+        <th>Детали</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id_sale }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.date_sale }}</td>
+        <td>{{ order.total }} ₽</td>
+        <td><a [routerLink]="['/admin/orders', order.id_sale]">Подробнее</a></td>
+        <td>{{ order.total === 0 ? 'Индивидуальная заявка' : 'Заказ' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

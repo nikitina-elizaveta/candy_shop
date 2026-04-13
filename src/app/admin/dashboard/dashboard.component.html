@@ -1,0 +1,251 @@
+<div class="dashboard-wrapper">
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+
+  <header class="dashboard-header">
+    <div>
+      <h1 class="dashboard-title">Dashboard</h1>
+      <p class="dashboard-subtitle">Обзор показателей и аналитика</p>
+    </div>
+    <div class="header-controls">
+      <!-- Здесь можно оставить глобальный селектор, если нужно -->
+    </div>
+  </header>
+
+  <!--
+  <section class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon stat-icon-revenue">
+        <svg ...></svg>
+      </div>
+      <div class="stat-content">
+        <span class="stat-label">Общая выручка</span>
+        <span class="stat-value">{{ totalRevenue | number:'1.0-0' }} ₽</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon stat-icon-growth">
+        <svg ...></svg>
+      </div>
+      <div class="stat-content">
+        <span class="stat-label">Рост</span>
+        <span class="stat-value" [class.positive]="growthRate >= 0" [class.negative]="growthRate < 0">
+          {{ growthRate >= 0 ? '+' : '' }}{{ growthRate }}%
+        </span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon stat-icon-customers">
+        <svg ...></svg>
+      </div>
+      <div class="stat-content">
+        <span class="stat-label">Клиенты</span>
+        <span class="stat-value">{{ totalCustomers | number:'1.0-0' }}</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon stat-icon-orders">
+        <svg ...></svg>
+      </div>
+      <div class="stat-content">
+        <span class="stat-label">Заказы</span>
+        <span class="stat-value">{{ ordersToday | number:'1.0-0' }}</span>
+      </div>
+    </div>
+  </section>
+-->
+  <!-- Продажи по месяцам -->
+  <section class="glass-card chart-card chart-card-full">
+    <div class="card-header">
+      <h2 class="card-title">Продажи по месяцам</h2>
+      <div class="filter-control">
+        <select class="period-select" (change)="onPeriodChangeSales($event)">
+          <option value="all_time" [selected]="selectedPeriodSales === 'all_time'">Всё время</option>
+          <option value="last_year" [selected]="selectedPeriodSales === 'last_year'">Последний год</option>
+          <option value="last_6_months" [selected]="selectedPeriodSales === 'last_6_months'">6 месяцев</option>
+          <option value="last_3_months" [selected]="selectedPeriodSales === 'last_3_months'">3 месяца</option>
+          <option value="last_month" [selected]="selectedPeriodSales === 'last_month'">Месяц</option>
+        </select>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas #salesChart></canvas>
+    </div>
+  </section>
+
+  <!-- Графики: ингредиенты + праздники -->
+  <section class="charts-row">
+    <div class="glass-card chart-card">
+      <div class="card-header">
+        <h2 class="card-title">По ингредиентам</h2>
+        <div class="filter-group">
+          <select class="filter-select" (change)="onIngredientGroupChange($event)">
+            <option *ngFor="let g of ingredientGroups" [value]="g">{{ g }}</option>
+          </select>
+          <select class="period-select" (change)="onPeriodChangeIngredientLine($event)">
+            <option value="all_time">Всё время</option>
+            <option value="last_year">Год</option>
+            <option value="last_6_months">6 мес</option>
+            <option value="last_3_months">3 мес</option>
+            <option value="last_month">Месяц</option>
+          </select>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas #ingredientChart></canvas>
+      </div>
+    </div>
+    <div class="glass-card chart-card">
+      <div class="card-header">
+        <h2 class="card-title">По праздникам</h2>
+        <div class="filter-group">
+          <select class="filter-select" (change)="onOccasionChange($event)">
+            <option *ngFor="let o of occasions" [value]="o.id">{{ o.name }}</option>
+          </select>
+          <select class="period-select" (change)="onPeriodChangeOccasionLine($event)">
+            <option value="all_time">Всё время</option>
+            <option value="last_year">Год</option>
+            <option value="last_6_months">6 мес</option>
+            <option value="last_3_months">3 мес</option>
+            <option value="last_month">Месяц</option>
+          </select>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas #occasionChart></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Круговые диаграммы (пока без выбора периода) -->
+  <section class="charts-row charts-row-3">
+    <div class="glass-card chart-card">
+      <div class="card-header">
+        <h2 class="card-title">Ингредиенты (последний месяц)</h2>
+      </div>
+      <div class="chart-container chart-container-pie">
+        <canvas #ingredientPieChart></canvas>
+      </div>
+    </div>
+    <div class="glass-card chart-card">
+      <div class="card-header">
+        <h2 class="card-title">Праздники (последний месяц)</h2>
+      </div>
+      <div class="chart-container chart-container-pie">
+        <canvas #occasionPieChart></canvas>
+      </div>
+    </div>
+    <!--
+    <div class="glass-card chart-card">
+      <div class="card-header">
+        <h2 class="card-title">Популярные товары</h2>
+        <div class="filter-control">
+          <select class="period-select" (change)="onPeriodChangePopular($event)">
+            <option value="all_time">Всё время</option>
+            <option value="last_year">Год</option>
+            <option value="last_6_months">6 мес</option>
+            <option value="last_3_months">3 мес</option>
+            <option value="last_month">Месяц</option>
+          </select>
+        </div>
+      </div>
+      <div class="chart-container chart-container-bar">
+        <canvas #popularChart></canvas>
+      </div>
+    </div>-->
+  </section>
+
+  <!-- Средний чек -->
+  <section class="glass-card chart-card chart-card-full">
+    <div class="card-header">
+      <h2 class="card-title">Средний чек по месяцам</h2>
+      <div class="filter-control">
+        <select class="period-select" (change)="onPeriodChangeAverage($event)">
+          <option value="all_time">Всё время</option>
+          <option value="last_year">Год</option>
+          <option value="last_6_months">6 мес</option>
+          <option value="last_3_months">3 мес</option>
+          <option value="last_month">Месяц</option>
+        </select>
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas #averageCheckChart></canvas>
+    </div>
+  </section>
+
+
+  <section class="charts-row charts-row-3">
+   <!--<div class="glass-card">
+      <div class="card-header">
+        <h2 class="card-title">📉 Непопулярные товары</h2>
+        <div class="filter-control">
+          <select class="period-select" (change)="onPeriodChangeUnpopular($event)">
+            <option value="all_time">Всё время</option>
+            <option value="last_year">Год</option>
+            <option value="last_6_months">6 мес</option>
+            <option value="last_3_months">3 мес</option>
+            <option value="last_month">Месяц</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="stats-table">
+          <thead><tr><th>Товар</th><th>Продано, шт</th></tr></thead>
+          <tbody>
+            <tr *ngFor="let prod of unpopularProducts">
+              <td>{{ prod.name }}</td>
+              <td>{{ prod.total_quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>-->
+    <div class="glass-card">
+      <div class="card-header">
+        <h2 class="card-title">🔥 Топ‑10 популярных фильтров</h2>
+        <div class="filter-control">
+        <!--<select class="period-select" (change)="onPeriodChangeFilters($event)">
+            <option value="all_time">Всё время</option>
+            <option value="last_year">Год</option>
+            <option value="last_6_months">6 мес</option>
+            <option value="last_3_months">3 мес</option>
+            <option value="last_month">Месяц</option>
+          </select>-->
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="stats-table">
+          <thead><tr><th>Фильтр</th><th>Применений</th></tr></thead>
+          <tbody>
+            <tr *ngFor="let f of topFilters">
+              <td>{{ f.filter }}</td>
+              <td>{{ f.count }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <div class="card-header">
+        <h2 class="card-title">🏆 Топ‑5 популярных товаров</h2>
+        <div class="filter-control">
+          <!-- Здесь тоже можно добавить селектор периода, но он уже есть у графика популярных товаров -->
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="stats-table">
+          <thead><tr><th>Товар</th><th>Продано, шт</th></tr></thead>
+          <tbody>
+            <tr *ngFor="let prod of popularProducts | slice:0:5">
+              <td>{{ prod.name || prod.product_name }}</td>
+              <td>{{ prod.total_quantity || prod.count || prod.total_sold }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>

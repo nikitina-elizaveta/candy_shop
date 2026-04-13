@@ -1,0 +1,29 @@
+<div class="order-details" *ngIf="order">
+  <h2>Заказ #{{ order.id_sale }}</h2>
+  <p><strong>Имя:</strong> {{ order.name }}</p>
+  <p><strong>Телефон:</strong> {{ order.phone }}</p>
+  <p><strong>Дата:</strong> {{ order.date_sale }}</p>
+  <p><strong>Комментарий:</strong> {{ order.comment || 'нет' }}</p>
+  
+  <h3>Состав заказа</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Товар</th>
+        <th>Количество</th>
+        <th>Цена</th>
+        <th>Сумма</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }} ₽</td>
+        <td>{{ item.quantity * item.price }} ₽</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Итого:</strong> {{ total }} ₽</p>
+  <a routerLink="/admin/orders">Назад к списку</a>
+</div>

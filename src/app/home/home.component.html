@@ -1,0 +1,163 @@
+    <section class="main-content">
+        <div class="container">
+            <div class="main-info">
+                <h1 class="main-title">Магия вкуса в каждой крошке</h1>
+                <p class="main-text">
+                    Наши рецепты вдыхают жизнь в изысканность ингредиентов: ароматное натуральное масло, свежие сливки,
+                    чистый мёд и отборная мука. Мы тщательно отбираем каждый компонент премиального печенья, стремясь
+                    подарить вам истинное кулинарное наслаждение.
+                </p>
+                <div class="main-action">
+                    <button class="button" (click)="scrollTo(productSection)">Заказать</button>
+                </div>
+            </div>
+            <img src="./assets/images/cookie.png" alt="cookie" class="main-image">
+        </div>
+    </section>
+
+   <section class="products" #productSection>
+    <div class="container">
+        <div class="common-title">Выберите печенье</div>
+
+<div class="filters" *ngIf="filtersData">
+  <details class="filter-group">
+    <summary><h4>Праздники</h4></summary>
+    <div class="filter-options">
+      <label *ngFor="let occasion of filtersData.occasions">
+        <input type="checkbox" [value]="occasion.id" 
+               (change)="toggleOccasion(occasion.id)"
+               [checked]="selectedOccasions.includes(occasion.id)">
+        {{ occasion.name }}
+      </label>
+    </div>
+  </details>
+
+  <details class="filter-group">
+    <summary><h4>Ингредиенты</h4></summary>
+    <div class="filter-options">
+      <label *ngFor="let group of filtersData.ingredientGroups">
+        <input type="checkbox" [value]="group" 
+               (change)="toggleIngredientGroup(group)"
+               [checked]="selectedIngredientGroups.includes(group)">
+        {{ group }}
+      </label>
+    </div>
+  </details>
+
+  <details class="filter-group">
+    <summary><h4>Диетические</h4></summary>
+    <div class="filter-options">
+      <label *ngFor="let diet of filtersData.dietaryFilters">
+        <input type="checkbox" [value]="diet.id" 
+               (change)="toggleDietary(diet.id)"
+               [checked]="dietaryFilters[diet.id]">
+        {{ diet.name }}
+      </label>
+    </div>
+  </details>
+
+  <details class="filter-group">
+    <summary><h4>Сортировка</h4></summary>
+    <div class="filter-options">
+      <label>
+        <input type="radio" name="sort" value="price_asc" 
+               (change)="setSort('price_asc')"
+               [checked]="sortOrder === 'price_asc'"> По возрастанию цены
+      </label>
+      <label>
+        <input type="radio" name="sort" value="price_desc" 
+               (change)="setSort('price_desc')"
+               [checked]="sortOrder === 'price_desc'"> По убыванию цены
+      </label>
+    </div>
+  </details>
+</div>
+
+        <div class="products-items">
+            <div class="products-item" *ngFor="let product of products">
+                <div class="products-item-image">
+                    <img src="./assets/images/{{product.image}}" alt="Product">
+                </div>
+                <div class="products-item-details">
+                    <div class="products-item-title">{{product.name}}</div>
+                    <div class="products-item-tex">
+                        {{product.description}}
+                    </div>
+                    <div class="products-item-extra">
+                        <div class="products-item-info">
+                            <div class="products-item-price">{{product.price}} ₽</div>
+                            <div class="products-item-weight">{{product.weight}}</div>
+                        </div>
+                      <ng-container *ngIf="!isInCart(product.id_product); else cartLink">
+  <button class="button violet-button" (click)="handleCartAction(product)">
+    В корзину
+  </button>
+</ng-container>
+<ng-template #cartLink>
+  <a routerLink="/cart" class="button violet-button in-cart">
+    В корзине
+  </a>
+</ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="love" #love>
+        <div class="container">
+            <div class="common-title">Пекарня с любовью</div>
+            <div class="love-items">
+                <div class="love-item love-item-white">
+                    <div class="love-item-title">Приготовлено с заботой, чтобы радовать вас каждый день</div>
+                    <div class="love-item-tex">
+                        Мы с гордостью представляем наше печенье, которое мы выпекаем вручную
+                        каждый
+                        день с 2020 года, используя только лучшие ингредиенты. Погрузитесь в мир изысканных лакомств,
+                        приготовленных с применением передовых технологий, и насладитесь их неповторимым вкусом.
+                    </div>
+                </div>
+                <div class="love-item love-item-image">
+                    <img src="./assets/images/love.png" alt="Cookies image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="order" #order>
+  <div class="container">
+    <div class="common-title">Индивидуальные заказы</div>
+    <img src="./assets/images/order6.png" alt="breadcrumbs" class="order-bg-image">
+    <div class="order-block">
+      <div class="order-form">
+        <div class="order-form-text">
+          Если у вас есть особые пожелания или вы хотите сделать индивидуальный заказ, оставьте заявку, и мы свяжемся с вами.
+        </div>
+        <div class="order-form-inputs" [formGroup]="form">
+          <div>
+            <input type="text" placeholder="Ваше имя" formControlName="name"
+                   [class.error]="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)">
+            <div *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)" class="error-message">
+              <div *ngIf="form.get('name')?.errors?.['required']">Имя обязательно</div>
+              <div *ngIf="form.get('name')?.errors?.['pattern']">Используйте только русские буквы, пробелы и дефисы</div>
+            </div>
+          </div>
+
+          <div>
+            <input type="text" placeholder="Ваш телефон" formControlName="phone"
+                   [class.error]="form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched)">
+            <div *ngIf="form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched)" class="error-message">
+              <div *ngIf="form.get('phone')?.errors?.['required']">Телефон обязателен</div>
+              <div *ngIf="form.get('phone')?.errors?.['pattern']">Введите корректный номер</div>
+            </div>
+          </div>
+          <button class="button violet-button" (click)="sendIndividualRequest()" [disabled]="form.invalid">Отправить заявку</button>
+        </div>
+      </div>
+      <div class="order-block-image">
+        <img src="./assets/images/order7.png" alt="Cookies" class="order-image">
+      </div>
+    </div>
+  </div>
+</section>

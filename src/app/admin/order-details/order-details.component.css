@@ -1,0 +1,225 @@
+:root {
+    --bg-color: #f8f8f2; /* Off-white/light gray */
+    --primary-dark: #0a0a23;
+    --accent-cream: #fffdf5;
+    --text-main: #0a0a23;
+    --text-muted: #666;
+    --border-radius: 15px;
+    --button-radius: 60px;
+    --shadow: 0 4px 12px rgba(10, 10, 35, 0.04);
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Steppe-Book', sans-serif;
+    color: var(--text-main);
+    margin: 0;
+    padding: 40px 20px;
+}
+
+.orders {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: var(--shadow);
+}
+
+.orders h2 {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: var(--primary-dark);
+    text-align: left;
+}
+
+/* Table Styles */
+.orders table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 16px;
+}
+
+.orders thead th {
+    background: #fcfcfc;
+    padding: 20px;
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #f5f5f5;
+    color: var(--text-muted);
+}
+
+.orders tbody td {
+    padding: 20px;
+    border-bottom: 1px solid #f5f5f5;
+    vertical-align: middle;
+}
+
+.orders tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.orders tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.orders tbody tr:hover {
+    background-color: #fdfdfd;
+}
+
+/* Links and Buttons */
+.orders a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid var(--primary-dark);
+    border-radius: var(--button-radius);
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+.orders a:hover {
+    background: var(--primary-dark);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Status/Type Column */
+.orders tbody td:last-child {
+    font-size: 13px;
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Individual Request Highlight */
+.orders tr td:last-child:contains("Индивидуальная заявка") {
+    color: #ef6c00; /* Warm orange for special requests */
+}
+
+@media (max-width: 992px) {
+    .orders {
+        padding: 20px;
+        overflow-x: auto;
+    }
+    .orders table {
+        min-width: 800px;
+    }
+}
+
+/* Order Details Page Styles - Bakery Theme (Updated for provided HTML) */
+
+.order-details {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: var(--shadow);
+}
+
+.order-details h2 {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: var(--primary-dark);
+    border-bottom: 2px solid #f5f5f5;
+    padding-bottom: 15px;
+}
+
+.order-details p {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+.order-details p strong {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    color: var(--text-muted);
+    min-width: 120px;
+    display: inline-block;
+}
+
+.order-details h3 {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 24px;
+    margin: 40px 0 20px;
+    color: var(--primary-dark);
+}
+
+/* Order Details Table */
+.order-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.order-details thead th {
+    background: #fcfcfc;
+    padding: 15px;
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.order-details tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #f9f9f9;
+    font-size: 16px;
+}
+
+.order-details tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Total Highlight */
+.order-details p:has(strong:contains("Итого")) {
+    margin-top: 30px;
+    padding: 20px;
+    background: var(--accent-cream);
+    border-radius: 15px;
+    font-size: 24px;
+    text-align: right;
+}
+
+.order-details p:has(strong:contains("Итого")) strong {
+    color: var(--primary-dark);
+}
+
+/* Back Link */
+.order-details a[routerLink="/admin/orders"] {
+    display: inline-block;
+    margin-top: 30px;
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: 1px solid var(--primary-dark);
+    border-radius: var(--button-radius);
+    transition: all 0.3s;
+}
+
+.order-details a[routerLink="/admin/orders"]:hover {
+    background: var(--primary-dark);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .order-details {
+        padding: 20px;
+    }
+    .order-details table {
+        display: block;
+        overflow-x: auto;
+    }
+}

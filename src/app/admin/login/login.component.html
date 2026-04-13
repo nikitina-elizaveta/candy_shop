@@ -1,0 +1,13 @@
+<div class="login-container">
+  <div class="login-form">
+    <h2>Вход в админ-панель</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="token">Секретный ключ</label>
+        <input type="password" id="token" formControlName="token" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Войти</button>
+    </form>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </div>
+</div>

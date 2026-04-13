@@ -1,0 +1,466 @@
+.main{
+    position: relative;
+    overflow: hidden;
+}
+
+
+.header .container{
+    display: flex;
+    align-items: center;
+}
+
+.logo .img{
+    vertical-align: bottom;
+}
+
+.menu{
+    align-items: center;
+}
+
+.menu-list{
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+.menu-item a{
+    font-size: 16px;
+    line-height: 130%;
+    text-decoration: none;
+    cursor: pointer;
+    color:  #0a0a23;
+}
+.menu-item a:hover{
+    border-bottom: 2px solid black;
+}
+
+.main-content{
+    padding-top: 161px;
+    padding-bottom: 200px;
+}
+
+.main-info{
+    max-width: 811px;
+}
+.main-title{
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 90px;
+    line-height: 100%;
+    margin-bottom: 20px;
+}
+
+.main-text{
+    max-width: 697px;
+    font-size: 18px;
+    line-height: 130%;
+    margin-bottom: 40px;
+}
+
+.main-image{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+.products{
+    padding: 100px 0;
+    position: relative;
+}
+
+.products-items{
+    display: grid;
+    grid-template-columns: repeat(3,384px);
+    gap: 90px 24px;
+    margin-top: 110px;
+}
+
+.products-item{
+    background-color: white;
+    color: #5D3427;
+}
+
+.products-item-image{
+    height: 202px;
+    text-align: center;
+}
+
+.products-item-image img {
+    height: 272px;
+    top: -70px;
+    position: relative;
+    max-width: 100%;
+}
+
+.products-item-details{
+    padding: 24px;
+}
+
+.products-item-title{
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.products-item-tex{
+    height: 110px;
+    font-size: 14px;
+    line-height: 120%;
+    margin-bottom: 20px;
+}
+
+.products-item-extra{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.products-item-price{
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 24px;
+    color:  #0a0a23;
+    margin-bottom: 10px;
+}
+
+.products-item-weight{
+    font-size: 12px;
+}
+
+.love{
+    padding: 64px 0 150px 0;
+}
+
+.love-items{
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+.love-item{
+    width: 590px;
+    height: 453px;
+}
+
+.love-item-white{
+    background-color: white;
+    padding: 110px 80px;
+    box-sizing: border-box;
+    color: #5D3427;
+}
+
+.love-item-title{
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 24px;
+    line-height: 110%;
+    margin-bottom: 20px;
+}
+
+.love-item-tex{
+    font-size: 18px;
+    line-height: 130%;
+}
+
+.order{
+    padding-bottom: 102px;
+    position: relative;
+}
+
+.order .container{
+    position: relative;
+}
+
+.order-block{
+    display: flex;
+    margin-top: 103px;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(40px);
+}
+
+.order-form{
+    margin-left: 200px;
+    max-width: 387px;
+    padding: 40px 0 44px 0;
+    box-sizing: border-box;
+}
+
+.order-form-text{
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 18px;
+    line-height: 130%;
+}
+
+.order-form-inputs{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.order-form-inputs input{
+    border: 1px solid black;
+    border-radius: 60px;
+    margin-bottom: 16px;
+    padding: 24px  22px;
+    font-size: 18px;
+    width: 385px;
+    height: 68px;
+    background: transparent;
+    box-sizing: border-box;
+    outline: none;
+    color: black;
+}
+
+      
+::placeholder{
+    color: black;
+}
+
+.order-form-inputs .button.violet-button{
+    width: 387px;
+    height: 71px;
+}
+
+.order-block-image{
+    height: 501px;
+    margin-left: 109px;
+}
+
+.order-image{
+    height: 559px;
+    top: -58px;
+    position: relative;
+}
+
+.order-bg-image{
+    position: absolute;
+    top: 0;
+    right: calc(100% - 810px);
+    z-index: -1;
+}
+
+.footer{
+    padding: 120px 0 50px 0;
+    text-align: center;
+}
+
+.rights{
+    margin-top: 14px;
+    font-size: 18px;
+    line-height: 130%;
+}
+
+.order-form-inputs input[class*="error"] {
+  border-color: red !important;
+}
+
+.button.added {
+  background-color: white;
+  cursor: default;
+}
+.button.in-cart {
+  background-color: #e0e0e0;
+  color: #6c757d;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Steppe', sans-serif;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+input.error, textarea.error {
+  border-color: #900020;
+}
+
+
+
+
+:root {
+    --bg-color: #f5f5dc;
+    --primary-dark: #0a0a23;
+    --accent-cream: #fffdf5;
+    --text-main: #0a0a23;
+    --text-muted: #666;
+    --border-radius: 20px;
+    --button-radius: 60px;
+    --shadow: 0 4px 15px rgba(10, 10, 35, 0.05);
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: var(--accent-cream);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 60px;
+    border: 1px solid rgba(10, 10, 35, 0.05);
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 220px;
+    background: white;
+    border-radius: 15px;
+    border: 1px solid rgba(10, 10, 35, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.filter-group[open] {
+    box-shadow: 0 4px 12px rgba(10, 10, 35, 0.08);
+}
+.filter-group:not([open]) {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+/* Summary / Header Styling */
+summary {
+    list-style: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary:hover {
+    background-color: #fafafa;
+}
+
+summary h4 {
+    font-family: 'Steppe-ExtraBold', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    color: var(--primary-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Custom Arrow Icon */
+summary::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--primary-dark);
+    border-bottom: 2px solid var(--primary-dark);
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    margin-right: 5px;
+}
+
+.filter-group[open] summary::after {
+    transform: rotate(-135deg);
+}
+
+/* Options Container */
+.filter-options {
+    padding: 10px 20px 20px;
+    border-top: 1px solid #f5f5f5;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.filter-options label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-family: 'Steppe-Book', sans-serif;
+    font-size: 15px;
+    color: var(--text-main);
+    transition: color 0.2s;
+}
+
+.filter-options label:last-child {
+    margin-bottom: 0;
+}
+
+.filter-options label:hover {
+    color: #000;
+}
+
+/* Custom Checkbox & Radio Styling */
+.filter-options input[type="checkbox"],
+.filter-options input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary-dark);
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.filter-options input[type="radio"] {
+    border-radius: 50%;
+}
+
+/* Checkbox Checked State */
+.filter-options input[type="checkbox"]:checked {
+    background: #000000;
+}
+
+.filter-options input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Radio Checked State */
+.filter-options input[type="radio"]:checked {
+    background: black;
+}
+
+.filter-options input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-dark);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Focus State */
+.filter-options input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(10, 10, 35, 0.1);
+}
+
+.filter-group:not([open]) .filter-options {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .filter-group {
+        min-width: 100%;
+    }
+}

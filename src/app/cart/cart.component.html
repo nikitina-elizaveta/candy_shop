@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>Корзина</h2>
+
+  <div *ngIf="cartItems.length === 0; else cartContent">
+    <p>Корзина пуста</p>
+    <a routerLink="/">Вернуться к покупкам</a>
+  </div>
+
+  <ng-template #cartContent>
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <img [src]="'./assets/images/' + item.image" alt="{{ item.name }}" width="60" height="60">
+        <div class="cart-item-details">
+          <h4>{{ item.name }}</h4>
+          <p>{{ item.price }} ₽</p>
+          <label>
+            Количество:
+            <input type="number" [value]="item.quantity" min="1" 
+                   (change)="updateQuantity(item.productId, $any($event.target).value)">
+          </label>
+          <button class="remove-btn" (click)="removeFromCart(item.productId)">Удалить</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-total">
+      <strong>Итого: {{ total }} ₽</strong>
+    </div>
+
+    <div class="checkout-form">
+      <h3>Оформление заказа</h3>
+      <form [formGroup]="checkoutForm" (ngSubmit)="submitOrder()">
+        <div class="form-group">
+  <label>Имя</label>
+  <input type="text" formControlName="name" class="form-control">
+ <div *ngIf="checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched" class="error">
+  <div *ngIf="checkoutForm.get('name')?.errors?.['required']">Имя обязательно</div>
+  <div *ngIf="checkoutForm.get('name')?.errors?.['pattern']">Имя может содержать только русские буквы, пробелы и дефис</div>
+</div>
+</div>
+
+<div class="form-group">
+  <label>Телефон</label>
+  <input type="text" formControlName="phone" class="form-control">
+  <div *ngIf="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched" class="error">
+    <div *ngIf="checkoutForm.get('phone')?.errors?.['required']">Телефон обязателен</div>
+    <div *ngIf="checkoutForm.get('phone')?.errors?.['pattern']">Введите корректный номер (10-11 цифр, можно с +)</div>
+  </div>
+</div>
+        <button type="submit" class="button violet-button" [disabled]="checkoutForm.invalid || cartItems.length === 0">
+          Оформить заказ
+        </button>
+      </form>
+    </div>
+
+    <button class="button" (click)="clearCart()">Очистить корзину</button>
+  </ng-template>
+</div>
