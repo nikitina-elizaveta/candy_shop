@@ -20,7 +20,7 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-            "baseHref": "/cookies/",
+            "baseHref": "/",
             "assets": [
               "src/favicon.ico",
               "src/assets"
