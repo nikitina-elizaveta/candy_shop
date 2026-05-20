@@ -26,7 +26,7 @@ export interface FiltersData {
   providedIn: 'root'
 })
 export class ApiService {
-private apiUrl = 'https://nikitina-elizaveta-cookies-backend-4030.twc1.net/api';
+private apiUrl = 'nikitina-elizaveta-cookies-backend-aa5c.twc1.net/api';
 constructor(private http: HttpClient) { }
 
   getProducts(params?: any): Observable<Product[]> {
